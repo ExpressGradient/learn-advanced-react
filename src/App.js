@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Accessibility, {Todos} from "./Accessibility";
+import RootComponent from "./Context";
+import ErrorBoundary from "./ErrorBoundary";
+import RefComponent from "./Ref";
+import RefForward from "./RefForward";
+import FinalContainer from "./HOC";
+import ShouldComponentUpdateExample from "./ShouldComponentUpdateExample";
+import PortalComponent from "./Portal";
+import ProfilerComponent from "./ProfilerComponent";
+import RenderProps from "./RenderProps";
+import GreetingWithTypechecking, { SingleChild } from "./Typechecking";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+	return(<ErrorBoundary>
+		<Accessibility />
+		<Todos />
+		<RootComponent />
+		<RefComponent />
+		<RefForward />
+		<FinalContainer />
+		<ShouldComponentUpdateExample />
+		<PortalComponent>
+			<h1>I'm inside a portal</h1>
+		</PortalComponent>
+		<ProfilerComponent />
+		<RenderProps render={(state) => <p>The value of data is {state.data}</p>} />
+		<GreetingWithTypechecking name="discoding" rank={2} />
+		<SingleChild>
+			<h1>I'm a single child</h1>
+		</SingleChild>
+	</ErrorBoundary>);
 }
 
-export default App;
+// Short note about Fragment.
+// React.Fragment can accept a key while mapping a collection to array of fragments.
